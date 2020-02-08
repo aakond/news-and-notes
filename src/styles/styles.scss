@@ -1,4 +1,13 @@
 .padding-1 {
-        padding-left: 1rem;
-        padding-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.navlink__active {
+  background-color: rgba(0,0,0,0.1);
+  font-weight: 600;
 }

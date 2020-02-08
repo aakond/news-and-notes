@@ -8,8 +8,8 @@ const Navbar: React.FC = () => {
                 <div className="nav-wrapper cyan darken-3 padding-1">
                         <NavLink to="/" className="brand-logo">Главная</NavLink>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><NavLink to="/news">Новости</NavLink></li>
-                                <li><NavLink to="/notes">Профиль</NavLink></li>
+                                <li><NavLink activeClassName="navlink__active" to="/news">Новости</NavLink></li>
+                                <li><NavLink activeClassName="navlink__active" to="/notes">Профиль</NavLink></li>
                         </ul>
                 </div>
         </nav>
