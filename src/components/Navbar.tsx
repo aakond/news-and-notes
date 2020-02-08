@@ -1,14 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import '../styles/index.scss';
 
 const Navbar: React.FC = () => {
         return <nav>
-                <div className="nav-wrapper cyan darken-3 nav-wrapper__padding">
-                        <a href="#" className="brand-logo nav-wrapper__padding">Главная</a>
+                <div className="nav-wrapper cyan darken-3 padding-1">
+                        <NavLink to="/" className="brand-logo">Главная</NavLink>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><a href="/news">Новости</a></li>
-                                <li><a href="/notes">Профиль</a></li>
+                                <li><NavLink to="/news">Новости</NavLink></li>
+                                <li><NavLink to="/notes">Профиль</NavLink></li>
                         </ul>
                 </div>
         </nav>
