@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 
-import './styles/index.scss'
+import './styles/styles.scss'
 
 const App: React.FC = () => {
     return <BrowserRouter>
