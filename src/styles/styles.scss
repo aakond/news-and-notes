@@ -8,10 +8,34 @@
 }
 
 .navlink__active {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   font-weight: 600;
 }
 
 .margin-top-2 {
   margin-top: 2rem;
+}
+
+.note {
+  margin-bottom: 1rem;
+  .completed {
+    span {
+      text-decoration: line-through;
+    }
+  }
+
+  label {
+    @extend .padding-1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: lightgrey;
+  }
+
+  i {
+    z-index: 2;
+  }
+
 }
