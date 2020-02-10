@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionTypes } from '../actions/actions';
+import { INotesModel } from '../reducers/notesReducers'
 
 import '../styles/styles.scss'
 
+interface IState {
+    notes: INotesModel
+}
+
 const NoteForm: React.FC = () => {
-    const [title, setTitle] = useState<string>('');
+    const dispatch = useDispatch();
+
+    const notes = useSelector<IState, INotesModel>((state: IState) => state.notes);
+
+
+    let title: string;
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
+        title = event.target.value;
     };
 
     const enterPressHandler = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
-            console.log(title);
-            setTitle('');
+            dispatch({ type: actionTypes.ADD, payload: title });
+            console.log({notes});
+
         }
     };
 
