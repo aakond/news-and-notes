@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { INoteModel, INotesModel } from '../reducers/notesReducers';
+import { INoteModel } from '../reducers/notesReducers';
 
 import '../styles/styles.scss'
 
@@ -10,16 +9,16 @@ interface NotesListProps {
     onDelete: (id: number) => void
 }
 
-/*interface IState {
-    notes: INotesModel
-}*/
-
 export const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete }) => {
-    //const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);    
-    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        
-        console.log('note done changed: ' + event.target);
+    const deleteHandler = (event: React.MouseEvent, id: number) => {
+        event.preventDefault();
+        onDelete(id);
     }
+    if (notes.length === 0)
+    {
+        return <p className="align-center">Пусто! Заметок нет</p>
+    }
+
     return <ul>
         {notes.map(note => {
             const classes = ['note'];
@@ -32,12 +31,11 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete 
                     <span>
                         {note.title}
                     </span>
-                    <i className="material-icons red-text" onClick={() => onDelete(note.id)}>delete</i>
+                    <i className="material-icons red-text" onClick={event => deleteHandler(event, note.id)}>delete</i>
                 </label>
             </li>
         }
         )
         }
-
     </ul>
 }
