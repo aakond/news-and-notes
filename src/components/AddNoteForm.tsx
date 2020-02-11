@@ -4,7 +4,7 @@ import { actionTypes } from '../actions/actions';
 
 import '../styles/styles.scss'
 
-const NoteForm: React.FC = () => {
+const AddNoteForm: React.FC = () => {
     const dispatch = useDispatch();
     const [note, setNote] = useState('');
 
@@ -27,4 +27,4 @@ const NoteForm: React.FC = () => {
     </div>
 }
 
-export default NoteForm
+export default AddNoteForm

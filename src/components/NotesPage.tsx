@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { INoteModel, INotesModel } from '../reducers/notesReducers'
-import NoteForm from './NoteForm'
+import AddNoteForm from './AddNoteForm'
 import { NotesList } from './NotesList'
 import { actionTypes } from '../actions'
 
@@ -32,7 +32,7 @@ const NotesPage: React.FC = () => {
     return <div className="container"><h4 className="align-center">
         Ваши заметки
         </h4>
-        <NoteForm />
+        <AddNoteForm />
         <NotesList notes={listOfNotes} onToggle={toggleHandler} onDelete={deleteHandler} />
     </div>
 }
