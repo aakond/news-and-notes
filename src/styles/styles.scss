@@ -18,12 +18,6 @@
 
 .note {
   margin-bottom: 1rem;
-  .done {
-    span {
-      text-decoration: line-through;
-    }
-  }
-
   label {
     @extend .padding-1;
     width: 100%;
@@ -37,5 +31,10 @@
   i {
     z-index: 2;
   }
+}
 
+.done {
+  span {
+    text-decoration: line-through;
+  }
 }
