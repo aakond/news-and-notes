@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionTypes } from '../actions/actions';
-import { INotesModel } from '../reducers/notesReducers'
 
 import '../styles/styles.scss'
 
-interface IState {
-    notes: INotesModel
-}
-
 const NoteForm: React.FC = () => {
     const dispatch = useDispatch();
-
-    const notes = useSelector<IState, INotesModel>((state: IState) => state.notes);
-
-    let title: string;
+    const [note, setNote] = useState('');
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        title = event.target.value;
+        setNote(event.target.value);
     };
 
     const enterPressHandler = (event: React.KeyboardEvent) => {
-        if (event.key === 'Enter') {
-            dispatch({ type: actionTypes.ADD, payload: title });
+        if (event.key === 'Enter' && note.length > 0) {
+            dispatch({ type: actionTypes.ADD, payload: { title: note, id: Date.now(), done: false }});
+            console.log(note);
+            setNote('');
         }
     };
 
     return <div className="input-field margin-top-2">
-        <input type="text" id="title" placeholder="Заметка" onKeyPress={enterPressHandler} onChange={changeHandler} />
+        <input type="text" id="title" placeholder="Заметка" onKeyPress={enterPressHandler} onChange={changeHandler} value={note} />
         <label htmlFor="title" className="active">Добавить заметку</label>
         
     </div>
