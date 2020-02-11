@@ -37,12 +37,12 @@ export const notesReducer = (state: INotesModel = initialState, action: Types.Ro
       let list = [...state.list];
       const noteId = action.payload;
       const notePosition = list.findIndex(note => note.id === noteId)!;
-      const oldNote = list[notePosition];
+      const note = list[notePosition];
       
       list[notePosition] = {
-        title: oldNote.title,
-        done: !oldNote.done,
-        id: oldNote.id
+        title: note.title,
+        done: !note.done,
+        id: note.id
       }
 
       return {
