@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.navlink__active {
+.navlink-active {
   background-color: rgba(0, 0, 0, 0.1);
   font-weight: 600;
 }
@@ -54,3 +54,10 @@ nav {
   justify-content: space-between;
   cursor: pointer;
 }
+
+.filter {
+  margin-left: 3rem;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+

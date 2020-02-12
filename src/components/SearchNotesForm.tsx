@@ -24,8 +24,7 @@ const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
             <i className="material-icons prefix">search</i>
             <input type="text" id="search" placeholder="Запрос" onChange={changeHandler} value={ query }/>
             <label htmlFor="search" className="active">Искать заметку</label>
-            <i className="material-icons" onClick={clearHandler}>close</i> 
-                   
+            <i className="material-icons" onClick={clearHandler}>close</i>                    
         </div>
 }
 

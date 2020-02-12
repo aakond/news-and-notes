@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { INoteModel, INotesModel } from '../reducers/notesReducers'
 import AddNoteForm from './AddNoteForm'
 import SearchNotesForm from './SearchNotesForm'
+import FilterNotes from './FilterNotes'
 import { NotesList } from './NotesList'
 import { actionTypes } from '../actions'
 
@@ -52,12 +53,25 @@ const NotesPage: React.FC = () => {
         dispatch({ type: actionTypes.ADD, payload: newNote});
     };
 
+    const allClickHandler = () => {
+        setNotesForOutput(listOfNotes);
+    }
+
+    const activeClickHandler = () => {
+        setNotesForOutput(listOfNotes.filter(note => !note.done));
+    }
+
+    const doneClickHandler = () => {
+        setNotesForOutput(listOfNotes.filter(note => note.done));        
+    }
+
     return <div className="row">
         <h4 className="align-center">
             Ваши заметки
                 </h4>
         <div className="col s12 m4 l3">
             <SearchNotesForm onSearch={searchHandler} />
+            <FilterNotes onAllClick={allClickHandler} onActiveClick={activeClickHandler} onDoneClick={doneClickHandler}/>
         </div>
 
         <div className="col s12 m8 l9">
