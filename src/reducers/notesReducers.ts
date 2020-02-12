@@ -21,7 +21,7 @@ export const notesReducer = (state: INotesModel = initialState, action: Types.Ro
     case actionTypes.ADD: {
       return {
         ...state,
-        list: [...state.list, action.payload]
+        list: [action.payload, ...state.list]
       };
     };
     case actionTypes.DELETE: {
@@ -43,21 +43,13 @@ export const notesReducer = (state: INotesModel = initialState, action: Types.Ro
         done: !list[notePosition].done,
         id: list[notePosition].id
       }
-   
-     
-      /*list[notePosition] = {
-        title: note.title,
-        done: !note.done,
-        id: note.id
-      }*/
-
       list.splice(notePosition, 1, changedNote);
 
       return {
         ...state,
         list: list
       };
-    }
+    };
     default:
       return state;
   }

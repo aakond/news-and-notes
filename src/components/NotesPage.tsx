@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { INoteModel, INotesModel } from '../reducers/notesReducers'
 import AddNoteForm from './AddNoteForm'
@@ -16,9 +16,14 @@ interface IState {
 
 const NotesPage: React.FC = () => {
     const dispatch = useDispatch();
-    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);    
-    const [notesForOutput, setNotesForOutput] = useState(listOfNotes); 
 
+    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);
+    const [notesForOutput, setNotesForOutput] = useState(listOfNotes);
+
+    useEffect(() => {
+        setNotesForOutput(listOfNotes);
+    }, [listOfNotes]);
+    
     const toggleHandler = (id: number) => {
         dispatch({ type: actionTypes.CHANGE_DONE_PROP, payload: id });
     }
@@ -42,6 +47,10 @@ const NotesPage: React.FC = () => {
             setNotesForOutput(listOfNotes);
         }
     }
+    const enterHandler = (noteTitle: string) => {
+        const newNote: INoteModel = { title: noteTitle, id: Date.now(), done: false };
+        dispatch({ type: actionTypes.ADD, payload: newNote});
+    };
 
     return <div className="row">
         <h4 className="align-center">
@@ -52,16 +61,11 @@ const NotesPage: React.FC = () => {
         </div>
 
         <div className="col s12 m8 l9">
-            <AddNoteForm />
+            <AddNoteForm onEnterPress={enterHandler} />
             <NotesList notes={notesForOutput} onToggle={toggleHandler} onDelete={deleteHandler} />
         </div>
 
     </div>
-
-
-
-
-
 }
 
 export default NotesPage;

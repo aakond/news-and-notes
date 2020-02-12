@@ -5,8 +5,7 @@ import { INoteModel } from '../reducers/notesReducers'
 export enum actionTypes {
     ADD = "ADD",
     CHANGE_DONE_PROP = "CHANGE_DONE_PROP",
-    DELETE = "DELETE"
-    
+    DELETE = "DELETE"    
 }
 
 export const noteActions = {

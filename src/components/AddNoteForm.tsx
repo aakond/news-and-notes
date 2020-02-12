@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionTypes } from '../actions/actions';
+import React, { useState, useEffect } from 'react';
 
 import '../styles/styles.scss'
 
-const AddNoteForm: React.FC = () => {
-    const dispatch = useDispatch();
-    const [note, setNote] = useState('');
+interface AddNoteProps {
+    onEnterPress: (noteTitle: string) => void
+}
+
+const AddNoteForm: React.FC<AddNoteProps> = ( { onEnterPress } ) => {
+    const [note, setNote] = useState('');    
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNote(event.target.value);
     };
-
+    
     const enterPressHandler = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && note.length > 0) {
-            dispatch({ type: actionTypes.ADD, payload: { title: note, id: Date.now(), done: false }});
+            onEnterPress(note);
             console.log(note);
             setNote('');
         }
     };
+
+    useEffect(() => {
+    }, [note]);
 
     return <div className="input-field margin-top-2">
         <input type="text" id="title" placeholder="Новая заметка" onKeyPress={enterPressHandler} onChange={changeHandler} value={note} />

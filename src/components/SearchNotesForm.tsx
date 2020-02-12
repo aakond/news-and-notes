@@ -12,7 +12,7 @@ const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
         setQuery(event.target.value);                
     };
     
-    const clearHandler = () => {
+    const clearHandler = (event: React.MouseEvent) => {
         setQuery(''); 
     }
     
