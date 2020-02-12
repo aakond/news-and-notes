@@ -21,9 +21,8 @@ const AddNoteForm: React.FC = () => {
     };
 
     return <div className="input-field margin-top-2">
-        <input type="text" id="title" placeholder="Заметка" onKeyPress={enterPressHandler} onChange={changeHandler} value={note} />
-        <label htmlFor="title" className="active">Добавить заметку</label>
-        
+        <input type="text" id="title" placeholder="Новая заметка" onKeyPress={enterPressHandler} onChange={changeHandler} value={note} />
+        <label htmlFor="title" className="active">Добавить заметку</label>        
     </div>
 }
 

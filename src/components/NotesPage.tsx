@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { INoteModel, INotesModel } from '../reducers/notesReducers'
 import AddNoteForm from './AddNoteForm'
+import SearchNotesForm from './SearchNotesForm'
 import { NotesList } from './NotesList'
 import { actionTypes } from '../actions'
 
@@ -15,7 +16,8 @@ interface IState {
 
 const NotesPage: React.FC = () => {
     const dispatch = useDispatch();
-    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);
+    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);    
+    const [notesForOutput, setNotesForOutput] = useState(listOfNotes); 
 
     const toggleHandler = (id: number) => {
         dispatch({ type: actionTypes.CHANGE_DONE_PROP, payload: id });
@@ -29,12 +31,39 @@ const NotesPage: React.FC = () => {
         }
     }
 
-    return <div className="container"><h4 className="align-center">
-        Ваши заметки
-        </h4>
-        <AddNoteForm />
-        <NotesList notes={listOfNotes} onToggle={toggleHandler} onDelete={deleteHandler} />
+    const searchHandler = (query: string) => {
+        console.log("Page: " + query);
+        if (query !== "") {
+            setNotesForOutput(listOfNotes.filter(note => {
+                const currentNoteTitle = note.title.toLowerCase();
+                const filter = query.toLowerCase();
+                return currentNoteTitle.includes(filter);
+            }));
+            console.log({notesForOutput});
+        } else {
+            setNotesForOutput(listOfNotes);
+        }
+    }
+
+    return <div className="row">
+        <h4 className="align-center">
+            Ваши заметки
+                </h4>
+        <div className="col s12 m4 l3">
+            <SearchNotesForm onSearch={searchHandler} />
+        </div>
+
+        <div className="col s12 m8 l9">
+            <AddNoteForm />
+            <NotesList notes={notesForOutput} onToggle={toggleHandler} onDelete={deleteHandler} />
+        </div>
+
     </div>
+
+
+
+
+
 }
 
 export default NotesPage;

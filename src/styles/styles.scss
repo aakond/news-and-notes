@@ -17,7 +17,7 @@
 }
 
 .note {
-  margin-bottom: 1rem;  
+  margin-bottom: 1rem;
   label {
     @extend .padding-1;
     width: 100%;
@@ -37,5 +37,13 @@
 .done {
   span {
     text-decoration: line-through;
+  }
+}
+
+nav {
+  ul {
+    li {
+      height: 64px;
+    }
   }
 }
