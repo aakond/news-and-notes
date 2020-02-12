@@ -16,7 +16,6 @@ const AddNoteForm: React.FC<AddNoteProps> = ( { onEnterPress } ) => {
     const enterPressHandler = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && note.length > 0) {
             onEnterPress(note);
-            console.log(note);
             setNote('');
         }
     };
