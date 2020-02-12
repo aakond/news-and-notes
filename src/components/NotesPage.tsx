@@ -32,14 +32,12 @@ const NotesPage: React.FC = () => {
     }
 
     const searchHandler = (query: string) => {
-        console.log("Page: " + query);
         if (query !== "") {
             setNotesForOutput(listOfNotes.filter(note => {
                 const currentNoteTitle = note.title.toLowerCase();
                 const filter = query.toLowerCase();
                 return currentNoteTitle.includes(filter);
             }));
-            console.log({notesForOutput});
         } else {
             setNotesForOutput(listOfNotes);
         }
