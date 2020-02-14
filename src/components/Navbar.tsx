@@ -24,9 +24,7 @@ const Navbar: React.FC = () => {
             <li><NavLink activeClassName="navlink-active" to="/news">Новости</NavLink></li>
             <li><NavLink activeClassName="navlink-active" to="/notes">Профиль</NavLink></li>
         </ul>
-    </nav>
-
-        
+    </nav>        
 }
 
 export default Navbar

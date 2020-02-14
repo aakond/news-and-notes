@@ -10,6 +10,7 @@ import { INewsModel } from '../reducers/newsReducer'
 
 import '../styles/styles.scss'
 
+import $ from 'jquery';
 
 
 export interface IState {
@@ -40,23 +41,29 @@ const NotesPage: React.FC = () => {
     }
 
     const searchHandler = (query: string) => {
+        const oldNotesForOutput = notesForOutput;
         if (query !== "") {
-            setNotesForOutput(notesForOutput.filter(note => {
+            const filtered = notesForOutput.filter(note => {
                 const currentNoteTitle = note.title.toLowerCase();
                 const filter = query.toLowerCase();
                 return currentNoteTitle.includes(filter);
-            }));
+            });
+            setNotesForOutput(filtered);
         } else {
-            setNotesForOutput(notesForOutput);
+            setNotesForOutput(oldNotesForOutput);
         }
     }
     const enterHandler = (noteTitle: string) => {
         const newNote: INoteModel = { title: noteTitle, id: Date.now(), done: false };
         dispatch({ type: actionTypes.ADD, payload: newNote});
+
+        $('.collection .collection-item.active').removeClass('active');
+        $('#default-filter').addClass('active');
+   
     };
 
     const allClickHandler = () => {
-        setNotesForOutput(listOfNotes);
+        setNotesForOutput(listOfNotes);        
     }
 
     const activeClickHandler = () => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import $ from 'jquery';
 
 import '../styles/styles.scss'
 
@@ -9,26 +10,19 @@ interface FilterNotesProps {
 }
 
 const FilterNotes: React.FC<FilterNotesProps> = ({ onAllClick, onActiveClick, onDoneClick }) => {
-    const [query, setQuery] = useState('');
-
-    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
-
-    const clearHandler = (event: React.MouseEvent) => {
-        setQuery('');
-    }
-
     const allClickHandler = () => { onAllClick() };
     const activeClickHandler = () => { onActiveClick() };
     const doneClickHandler = () => { onDoneClick() };
 
     useEffect(() => {
-        // onSearch(query);        
-    }, [query]);
+        $('.collection').on('click', '.collection-item', function () {
+            $('.collection .collection-item.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    }, [])
 
-    return <div className="collection filter">
-        <a className="collection-item" onClick={allClickHandler}>Все заметки</a>
+    return <div className="collection filter" id="filter">
+        <a className="collection-item active" id="default-filter" onClick={allClickHandler}>Все заметки</a>
         <a className="collection-item" onClick={activeClickHandler}>Активные заметки</a>
         <a className="collection-item" onClick={doneClickHandler}>Завершённые заметки</a>
     </div>
