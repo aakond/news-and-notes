@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       });
     
     return <nav>
-        <div className="nav-wrapper cyan darken-3 padding-1">
+        <div className="nav-wrapper teal lighten-1 padding-1">
             <a href="#" className="sidenav-trigger" data-target="mobile-nav">
                 <i className="material-icons">menu</i> </a>
             <NavLink to="/" className="brand-logo">Главная</NavLink>
