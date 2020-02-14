@@ -6,13 +6,15 @@ import SearchNotesForm from './SearchNotesForm'
 import FilterNotes from './FilterNotes'
 import { NotesList } from './NotesList'
 import { actionTypes } from '../actions'
-
+import { INewsModel } from '../reducers/newsReducer'
 
 import '../styles/styles.scss'
 
 
-interface IState {
-    notes: INotesModel
+
+export interface IState {
+    notes: INotesModel,
+    news: INewsModel
 }
 
 const NotesPage: React.FC = () => {
@@ -39,13 +41,13 @@ const NotesPage: React.FC = () => {
 
     const searchHandler = (query: string) => {
         if (query !== "") {
-            setNotesForOutput(listOfNotes.filter(note => {
+            setNotesForOutput(notesForOutput.filter(note => {
                 const currentNoteTitle = note.title.toLowerCase();
                 const filter = query.toLowerCase();
                 return currentNoteTitle.includes(filter);
             }));
         } else {
-            setNotesForOutput(listOfNotes);
+            setNotesForOutput(notesForOutput);
         }
     }
     const enterHandler = (noteTitle: string) => {
