@@ -9,7 +9,7 @@ const NewsHorizontalItem: React.FC<INewsItemProps> = ({ news }) => {
         <div className="card-stacked">
             <div className="card-content">
             <span className="card-title">{news.header} </span>
-          <p>{news.content}</p>
+          <p>{news.content} {news.content} {news.content}</p>
           <span className="card-date">{news.date}</span>
             </div>
             <div className="card-action">
