@@ -2,7 +2,7 @@ import React from "react";
 
 import '../styles/styles.scss'
 
-const NewsItem: React.FC = () => {
+const NewsVerticalItem: React.FC = () => {
     return <div className="card">
 
         <div className="card-image">
@@ -19,4 +19,4 @@ const NewsItem: React.FC = () => {
       </div>
 };
 
-export default NewsItem;
+export default NewsVerticalItem;
