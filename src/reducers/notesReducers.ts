@@ -1,19 +1,19 @@
-import * as Types from 'Types';
-import { actionTypes } from '../actions/actions';
-import { INotesPageModel, INoteModel } from '../interfaces';
+import * as Types from "Types";
+import { actionTypes } from "../actions/actions";
+import { INotesPageModel, INoteModel } from "../interfaces";
 
-const defaultNotes: INoteModel[] = [{ title: 'Пример заметки 1', id: 1, done: false }, { title: 'Пример заметки 2', id: 2, done: false }];
+const defaultNotes: INoteModel[] = [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }];
 
 export const initialState: INotesPageModel = {
 	list: defaultNotes,
 	filteredList: defaultNotes,
-	searchQuery: ''
+	searchQuery: ""
 };
 
 export const notesReducer = (state: INotesPageModel = initialState, action: Types.RootAction) => {
 	switch (action.type) {
 		case actionTypes.ADD: {
-			const newList = [action.payload, ...state.list];			
+			const newList = [action.payload, ...state.list];
 
 			return {
 				...state,
@@ -57,7 +57,7 @@ export const notesReducer = (state: INotesPageModel = initialState, action: Type
 			} else {
 				filteredList = list.filter(note => note.done === action.payload);
 			}
-			if (action.meta !== '') {
+			if (action.meta !== "") {
 				filteredList = filteredList.filter(note => {
 					const currentNoteTitle = note.title.toLowerCase();
 					const queryLC = action.meta.toLowerCase();
