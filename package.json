@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "lint": "tslint src/**/*.ts{,x}",
+    "lint-fix": "tslint src/**/*.ts{,x} --fix -c ./tslint.json" 
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,8 @@
     "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^7.2.0",
     "style-loader": "^1.1.3",
+    "tslint": "^6.0.0",
+    "tslint-immutable": "^6.0.1",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
