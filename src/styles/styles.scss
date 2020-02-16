@@ -1,0 +1,59 @@
+.align-center {
+  text-align: center;
+}
+
+.card-date {
+  color: gray;
+  float: right;
+}
+
+.done {
+  span {
+    text-decoration: line-through;
+  }
+}
+
+.filter {
+  margin-left: 3rem;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.input-field__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.margin-top-2 {
+  margin-top: 2rem;
+}
+
+.navlink-active {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+.note {
+  margin-bottom: 1rem;
+  label {
+    @extend .padding-1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #fefefe;
+    color: #000000;
+  }
+
+  i {
+    z-index: 2;
+  }
+}
+
+.padding-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
