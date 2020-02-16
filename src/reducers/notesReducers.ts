@@ -58,13 +58,6 @@ export const notesReducer = (state: INotesPageModel = initialState, action: Type
         filteredList: list
       };
     };
-    case actionTypes.FETCH_NOTES: {
-      return {
-        ...state,
-        list: [...state.list],
-        filteredList: [...state.list]
-      };
-    };
     case actionTypes.FILTER_NOTES: {
       const list = [...state.list];
       let filteredList: INoteModel[];
