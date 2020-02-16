@@ -19,7 +19,6 @@ export interface IState {
 }
 
 const NotesPage: React.FC = () => {
-
     const dispatch = useDispatch();
 
     const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.filteredList);
@@ -49,7 +48,6 @@ const NotesPage: React.FC = () => {
     }
 
     const searchHandler = (query: string) => {        
-        dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: query })
         dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: query });
     }
     const enterHandler = (noteTitle: string) => {
