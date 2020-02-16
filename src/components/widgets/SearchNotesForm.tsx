@@ -6,17 +6,13 @@ import '../../styles/styles.scss';
 
 const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
 	const dispatch = useDispatch();
-
 	const searchQuery = useSelector<IState, string>((state: IState) => state.notes.searchQuery);
-
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: event.target.value });
 	};
-
 	const clearHandler = () => {
 		dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: '' });
 	};
-
 	useEffect(() => {
 		onSearch(searchQuery);
 	}, [searchQuery]);

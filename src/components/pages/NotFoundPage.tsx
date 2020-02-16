@@ -6,7 +6,6 @@ const NotFoundPage: React.FC = () => {
 		<h2>Ой! &#x1F47B;</h2>
 		<h4>Запрошенная страница не существует</h4>
 	</div>;
-
 };
 
 export default NotFoundPage;

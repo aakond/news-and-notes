@@ -8,20 +8,13 @@ import $ from 'jquery';
 
 const NotesPage: React.FC = () => {
 	const dispatch = useDispatch();
-
 	const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.filteredList);
 	const searchQuery = useSelector<IState, string>((state: IState) => state.notes.searchQuery);
-
 	const [notesForOutput, setNotesForOutput] = useState(listOfNotes);
-	const [currentFilter, setCurrentFilter] = useState<boolean | undefined>(undefined);
-
-	useEffect(() => {
-		setNotesForOutput(listOfNotes);
-	}, [listOfNotes]);
+	const [currentFilter, setCurrentFilter] = useState<boolean | undefined>(undefined);		
 
 	const toggleHandler = (id: number) => {
 		dispatch({ type: actionTypes.CHANGE_DONE_PROP, payload: id });
-
 		if (typeof currentFilter !== 'undefined') {
 			dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: searchQuery });
 		}
@@ -38,6 +31,7 @@ const NotesPage: React.FC = () => {
 	const searchHandler = (query: string) => {
 		dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: query });
 	};
+
 	const enterHandler = (noteTitle: string) => {
 		dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: '' });
 		setFilter(undefined);
@@ -52,6 +46,10 @@ const NotesPage: React.FC = () => {
 		dispatch({ type: actionTypes.FILTER_NOTES, payload: newFilter, meta: searchQuery });
 	};
 
+	useEffect(() => {
+		setNotesForOutput(listOfNotes);
+	}, [listOfNotes]);
+
 	return <div className='row'>
 		<h4 className='align-center'>
 			Ваши заметки
@@ -60,12 +58,10 @@ const NotesPage: React.FC = () => {
 			<SearchNotesForm onSearch={searchHandler} />
 			<FilterNotes onAllClick={() => setFilter(undefined)} onActiveClick={() => setFilter(false)} onDoneClick={() => setFilter(true)} />
 		</div>
-
 		<div className='col s12 m8 l9'>
 			<AddNoteForm onEnterPress={enterHandler} />
 			<NotesList notes={notesForOutput} onToggle={toggleHandler} onDelete={deleteHandler} />
 		</div>
-
 	</div>;
 };
 

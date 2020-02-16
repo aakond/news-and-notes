@@ -13,7 +13,8 @@ export const initialState: INotesPageModel = {
 export const notesReducer = (state: INotesPageModel = initialState, action: Types.RootAction) => {
 	switch (action.type) {
 		case actionTypes.ADD: {
-			const newList = [action.payload, ...state.list];
+			const newList = [action.payload, ...state.list];			
+
 			return {
 				...state,
 				list: newList,
@@ -63,6 +64,7 @@ export const notesReducer = (state: INotesPageModel = initialState, action: Type
 					return currentNoteTitle.includes(queryLC);
 				});
 			}
+
 			return {
 				...state,
 				list: list,
@@ -72,6 +74,7 @@ export const notesReducer = (state: INotesPageModel = initialState, action: Type
 		case actionTypes.UPDATE_SEARCH_QUERY: {
 			const list = [...state.list];
 			const filteredList = [...state.filteredList];
+
 			return {
 				...state,
 				list: list,

@@ -18,7 +18,6 @@ const Navbar: React.FC = () => {
 				<li><NavLink activeClassName='navlink-active' to='/notes'>Профиль</NavLink></li>
 			</ul>
 		</div>
-
 		<ul className='sidenav sidenav-close' id='mobile-nav'>
 			<li><NavLink activeClassName='navlink-active' to='/news'>Новости</NavLink></li>
 			<li><NavLink activeClassName='navlink-active' to='/notes'>Профиль</NavLink></li>

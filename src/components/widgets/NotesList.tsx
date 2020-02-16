@@ -7,7 +7,7 @@ const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete }) => {
 		event.preventDefault();
 		onDelete(id);
 	};
-
+	
 	if (notes.length === 0) {
 		return <p className='align-center'>Пусто! Заметок нет</p>;
 	}
@@ -27,8 +27,7 @@ const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete }) => {
 					<i className='material-icons red-text' onClick={event => deleteHandler(event, note.id)}>delete</i>
 				</label>
 			</li>;
-		}
-		)
+		})
 		}
 	</ul>;
 };
