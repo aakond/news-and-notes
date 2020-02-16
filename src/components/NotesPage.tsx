@@ -60,22 +60,9 @@ const NotesPage: React.FC = () => {
         $('#default-filter').addClass('active');
     };
 
-    const allClickHandler = () => {
-        setCurrentFilter(undefined);
-        dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: searchQuery });
-        console.log(searchQuery);
-    }
-
-    const activeClickHandler = () => {
-        const filterFalse = false;
-        setCurrentFilter(filterFalse);
-        dispatch({ type: actionTypes.FILTER_NOTES, payload: filterFalse, meta: searchQuery });
-    }
-
-    const doneClickHandler = () => {
-        const filterTrue = true;
-        setCurrentFilter(filterTrue);
-        dispatch({ type: actionTypes.FILTER_NOTES, payload: filterTrue, meta: searchQuery  });       
+   const filterClickHandler = (newFilter: boolean | undefined, ) => {
+        setCurrentFilter(newFilter);
+        dispatch({ type: actionTypes.FILTER_NOTES, payload: newFilter, meta: searchQuery });
     }
 
     return <div className="row">
@@ -84,7 +71,7 @@ const NotesPage: React.FC = () => {
                 </h4>
         <div className="col s12 m4 l3">
             <SearchNotesForm onSearch={searchHandler} />
-            <FilterNotes onAllClick={allClickHandler} onActiveClick={activeClickHandler} onDoneClick={doneClickHandler}/>
+            <FilterNotes onAllClick={() => filterClickHandler(undefined)} onActiveClick={() => filterClickHandler(false)} onDoneClick={() => filterClickHandler(true)}/>
         </div>
 
         <div className="col s12 m8 l9">
