@@ -51,14 +51,15 @@ const NotesPage: React.FC = () => {
         dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: query });
     }
     const enterHandler = (noteTitle: string) => {
-        const newNote: INoteModel = { title: noteTitle, id: Date.now(), done: false };
-        dispatch({ type: actionTypes.ADD, payload: newNote });
         dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: "" })
+        setFilter(undefined);
+        const newNote: INoteModel = { title: noteTitle, id: Date.now(), done: false };
+        dispatch({ type: actionTypes.ADD, payload: newNote });        
         $('.collection .collection-item.active').removeClass('active');
         $('#default-filter').addClass('active');
     };
 
-   const filterClickHandler = (newFilter: boolean | undefined, ) => {
+   const setFilter = (newFilter: boolean | undefined ) => {
         setCurrentFilter(newFilter);
         dispatch({ type: actionTypes.FILTER_NOTES, payload: newFilter, meta: searchQuery });
     }
@@ -69,7 +70,7 @@ const NotesPage: React.FC = () => {
                 </h4>
         <div className="col s12 m4 l3">
             <SearchNotesForm onSearch={searchHandler} />
-            <FilterNotes onAllClick={() => filterClickHandler(undefined)} onActiveClick={() => filterClickHandler(false)} onDoneClick={() => filterClickHandler(true)}/>
+            <FilterNotes onAllClick={() => setFilter(undefined)} onActiveClick={() => setFilter(false)} onDoneClick={() => setFilter(true)}/>
         </div>
 
         <div className="col s12 m8 l9">
