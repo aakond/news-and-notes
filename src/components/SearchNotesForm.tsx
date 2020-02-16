@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { IState } from './NotesPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionTypes } from '../actions';
@@ -11,17 +11,16 @@ const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
     const dispatch = useDispatch();
     const searchQuery = useSelector<IState, string>((state: IState) => state.notes.searchQuery);
 
-
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {        
         dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: event.target.value })                
     };
     
-    const clearHandler = (event: React.MouseEvent) => {
+    const clearHandler = () => {
         dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: "" }) 
     }
     
     useEffect(() => {
-        onSearch(searchQuery);        
+        onSearch(searchQuery);
     }, [searchQuery]);
 
     return <div className="input-field input-field__search margin-top-2">
