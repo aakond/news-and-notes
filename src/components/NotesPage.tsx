@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { INoteModel, INotesModel } from '../reducers/notesReducers'
+import { INoteModel, INotesPageModel } from '../reducers/notesReducers'
 import AddNoteForm from './AddNoteForm'
 import SearchNotesForm from './SearchNotesForm'
 import FilterNotes from './FilterNotes'
@@ -14,22 +14,30 @@ import $ from 'jquery';
 
 
 export interface IState {
-    notes: INotesModel,
+    notes: INotesPageModel,
     news: INewsModel
 }
 
 const NotesPage: React.FC = () => {
+
     const dispatch = useDispatch();
 
-    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.list);
+    const listOfNotes = useSelector<IState, INoteModel[]>((state: IState) => state.notes.filteredList);
+    const searchQuery = useSelector<IState, string>((state: IState) => state.notes.searchQuery);
+
     const [notesForOutput, setNotesForOutput] = useState(listOfNotes);
+    const [currentFilter, setCurrentFilter] = useState<boolean | undefined>(undefined);
 
     useEffect(() => {
         setNotesForOutput(listOfNotes);
     }, [listOfNotes]);
-    
+
     const toggleHandler = (id: number) => {
-        dispatch({ type: actionTypes.CHANGE_DONE_PROP, payload: id });
+        dispatch({ type: actionTypes.CHANGE_DONE_PROP, payload: id });       
+        
+        if (typeof currentFilter !== 'undefined') {
+            dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: searchQuery });
+        }
     }
 
     const deleteHandler = (id: number) => {
@@ -40,38 +48,34 @@ const NotesPage: React.FC = () => {
         }
     }
 
-    const searchHandler = (query: string) => {
-        const oldNotesForOutput = notesForOutput;
-        if (query !== "") {
-            const filtered = notesForOutput.filter(note => {
-                const currentNoteTitle = note.title.toLowerCase();
-                const filter = query.toLowerCase();
-                return currentNoteTitle.includes(filter);
-            });
-            setNotesForOutput(filtered);
-        } else {
-            setNotesForOutput(oldNotesForOutput);
-        }
+    const searchHandler = (query: string) => {        
+        dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: query })
+        dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: query });
     }
     const enterHandler = (noteTitle: string) => {
         const newNote: INoteModel = { title: noteTitle, id: Date.now(), done: false };
-        dispatch({ type: actionTypes.ADD, payload: newNote});
-
+        dispatch({ type: actionTypes.ADD, payload: newNote });
+        dispatch({ type: actionTypes.UPDATE_SEARCH_QUERY, payload: "" })
         $('.collection .collection-item.active').removeClass('active');
         $('#default-filter').addClass('active');
-   
     };
 
     const allClickHandler = () => {
-        setNotesForOutput(listOfNotes);        
+        setCurrentFilter(undefined);
+        dispatch({ type: actionTypes.FILTER_NOTES, payload: currentFilter, meta: searchQuery });
+        console.log(searchQuery);
     }
 
     const activeClickHandler = () => {
-        setNotesForOutput(listOfNotes.filter(note => !note.done));
+        const filterFalse = false;
+        setCurrentFilter(filterFalse);
+        dispatch({ type: actionTypes.FILTER_NOTES, payload: filterFalse, meta: searchQuery });
     }
 
     const doneClickHandler = () => {
-        setNotesForOutput(listOfNotes.filter(note => note.done));        
+        const filterTrue = true;
+        setCurrentFilter(filterTrue);
+        dispatch({ type: actionTypes.FILTER_NOTES, payload: filterTrue, meta: searchQuery  });       
     }
 
     return <div className="row">

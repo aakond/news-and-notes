@@ -23,7 +23,7 @@ const FilterNotes: React.FC<FilterNotesProps> = ({ onAllClick, onActiveClick, on
 
     return <div className="collection filter" id="filter">
         <a className="collection-item active" id="default-filter" onClick={allClickHandler}>Все заметки</a>
-        <a className="collection-item" onClick={activeClickHandler}>Активные заметки</a>
+        <a className="collection-item" onClick={activeClickHandler}>Незавершённые заметки</a>
         <a className="collection-item" onClick={doneClickHandler}>Завершённые заметки</a>
     </div>
 }

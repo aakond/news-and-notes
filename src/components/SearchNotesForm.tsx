@@ -4,7 +4,6 @@ interface SearchNotesProps {
     onSearch: (query: string) => void
 }
 
-
 const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
@@ -13,7 +12,7 @@ const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
     };
     
     const clearHandler = (event: React.MouseEvent) => {
-        setQuery(''); 
+        setQuery(""); 
     }
     
     useEffect(() => {

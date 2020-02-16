@@ -7,21 +7,27 @@ export interface INoteModel {
   done: boolean
 }
 
-export interface INotesModel {
+export interface INotesPageModel {
   list: INoteModel[];
+  filteredList: INoteModel[];
+  searchQuery: string;
 }
 
-export const initialState: INotesModel = {
+export const initialState: INotesPageModel = {
   //list: []
-  list: [{ title: "Пример заметки 1", id: 1, done: false}, { title: "Пример заметки 2", id: 2, done: false}]
+  list: [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }],
+  filteredList: [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }],
+  searchQuery: ""
 };
 
-export const notesReducer = (state: INotesModel = initialState, action: Types.RootAction) => {
+export const notesReducer = (state: INotesPageModel = initialState, action: Types.RootAction) => {
   switch (action.type) {
     case actionTypes.ADD: {
+      const newList = [action.payload, ...state.list];
       return {
         ...state,
-        list: [action.payload, ...state.list]
+        list: newList,
+        filteredList: newList
       };
     };
     case actionTypes.DELETE: {
@@ -31,10 +37,11 @@ export const notesReducer = (state: INotesModel = initialState, action: Types.Ro
 
       return {
         ...state,
-        list: list
+        list: list,
+        filteredList: list
       };
     };
-    case actionTypes.CHANGE_DONE_PROP: {  
+    case actionTypes.CHANGE_DONE_PROP: {
       let list = [...state.list];
       const noteId = action.payload;
       const notePosition = list.findIndex(note => note.id === noteId)!;
@@ -47,9 +54,48 @@ export const notesReducer = (state: INotesModel = initialState, action: Types.Ro
 
       return {
         ...state,
-        list: list
+        list: list,
+        filteredList: list
       };
     };
+    case actionTypes.FETCH_NOTES: {
+      return {
+        ...state,
+        list: [...state.list],
+        filteredList: [...state.list]
+      };
+    };
+    case actionTypes.FILTER_NOTES: {
+      const list = [...state.list];
+      let filteredList: INoteModel[];
+      if (action.payload === undefined) {
+        filteredList = list;
+      } else {
+        filteredList = list.filter(note => note.done === action.payload);
+      }
+      if (action.meta !== "") {
+        filteredList = filteredList.filter(note => {
+          const currentNoteTitle = note.title.toLowerCase();
+          const queryLC = action.meta.toLowerCase();
+          return currentNoteTitle.includes(queryLC);
+        });
+      }
+      return {
+        ...state,
+        list: list,
+        filteredList: filteredList
+      }
+    };
+    case actionTypes.UPDATE_SEARCH_QUERY: {
+      const list = [...state.list];
+      const filteredList = [...state.filteredList];
+      return {
+        ...state,
+        list: list,
+        filteredList: filteredList,
+        searchQuery: action.payload
+      }
+    }
     default:
       return state;
   }
