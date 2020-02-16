@@ -1,6 +1,5 @@
 import { action } from 'typesafe-actions';
-
-import { INoteModel } from '../reducers/notesReducers'
+import { INoteModel } from '../interfaces'
 
 export enum actionTypes {
     ADD = "ADD",

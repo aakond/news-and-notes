@@ -1,18 +1,11 @@
 import React from 'react';
-import MainPage from './components/MainPage';
-import Navbar from './components/Navbar';
-import NewsPage from './components/NewsPage';
-import NotesPage from './components/NotesPage';
-import NotFoundPage from './components/NotFoundPage';
 import { Provider } from 'react-redux';
-import store from './store/store';
-
-
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-
-
+import { NewsPage, NotesPage, NotFoundPage, MainPage } from './components/pages/';
+import Navbar from './components/widgets/Navbar';
+import store from './store/store';
 import './styles/styles.scss'
+
 
 const App: React.FC = () => {
     return <Provider store={store}>

@@ -1,22 +1,13 @@
 import * as Types from 'Types';
 import { actionTypes } from '../actions/actions';
+import { INotesPageModel, INoteModel } from '../interfaces';
 
-export interface INoteModel {
-  title: string,
-  id: number,
-  done: boolean
-}
 
-export interface INotesPageModel {
-  list: INoteModel[];
-  filteredList: INoteModel[];
-  searchQuery: string;
-}
+const defaultNotes: INoteModel[] = [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }];
 
 export const initialState: INotesPageModel = {
-  //list: []
-  list: [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }],
-  filteredList: [{ title: "Пример заметки 1", id: 1, done: false }, { title: "Пример заметки 2", id: 2, done: false }],
+  list: defaultNotes,
+  filteredList: defaultNotes,
   searchQuery: ""
 };
 

@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { INoteModel, INotesPageModel } from '../reducers/notesReducers'
-import AddNoteForm from './AddNoteForm'
-import SearchNotesForm from './SearchNotesForm'
-import FilterNotes from './FilterNotes'
-import { NotesList } from './NotesList'
-import { actionTypes } from '../actions'
-import { INewsModel } from '../reducers/newsReducer'
-
-import '../styles/styles.scss'
-
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionTypes } from '../../actions';
+import { INoteModel, IState } from '../../interfaces';
+import { AddNoteForm, FilterNotes, NotesList, SearchNotesForm } from './../widgets';
+import '../../styles/styles.scss';
 import $ from 'jquery';
 
-
-export interface IState {
-    notes: INotesPageModel,
-    news: INewsModel
-}
 
 const NotesPage: React.FC = () => {
     const dispatch = useDispatch();

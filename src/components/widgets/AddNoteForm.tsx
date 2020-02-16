@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { AddNoteProps } from '../../interfaces';
+import '../../styles/styles.scss';
 
-import '../styles/styles.scss'
-
-interface AddNoteProps {
-    onEnterPress: (noteTitle: string) => void
-}
 
 const AddNoteForm: React.FC<AddNoteProps> = ( { onEnterPress } ) => {
     const [note, setNote] = useState('');    

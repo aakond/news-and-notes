@@ -1,10 +1,5 @@
-export interface INewsModel {
-    header: string,
-    content: string,
-    date: string,
-    imageSrc1: string,
-    imageSrc2: string,
-}
+import { INewsModel } from '../interfaces';
+
 
 export const initialState: INewsModel = {
     header: "Lorem ipsum",

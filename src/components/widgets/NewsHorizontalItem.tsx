@@ -1,5 +1,7 @@
 import React from 'react';
-import { INewsItemProps } from './NewsVerticalItem';
+import { INewsItemProps } from '../../interfaces';
+import '../../styles/styles.scss';
+
 
 const NewsHorizontalItem: React.FC<INewsItemProps> = ({ news }) => {
     return <div className="card horizontal">

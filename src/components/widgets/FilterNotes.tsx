@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react'
+import { FilterNotesProps } from '../../interfaces';
+import '../../styles/styles.scss';
 import $ from 'jquery';
 
-import '../styles/styles.scss'
-
-interface FilterNotesProps {
-    onAllClick: () => void,
-    onActiveClick: () => void,
-    onDoneClick: () => void,
-}
 
 const FilterNotes: React.FC<FilterNotesProps> = ({ onAllClick, onActiveClick, onDoneClick }) => {
     const allClickHandler = () => { onAllClick() };

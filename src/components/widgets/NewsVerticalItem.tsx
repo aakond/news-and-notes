@@ -1,11 +1,7 @@
 import React from "react";
-import { INewsModel } from '../reducers/newsReducer';
+import { INewsItemProps } from '../../interfaces';
+import '../../styles/styles.scss';
 
-import '../styles/styles.scss'
-
-export interface INewsItemProps {
-  news: INewsModel
-}
 
 const NewsVerticalItem: React.FC<INewsItemProps> = ({ news }) => {
     return <div className="card">

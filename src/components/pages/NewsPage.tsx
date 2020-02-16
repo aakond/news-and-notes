@@ -1,12 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
-import NewsVerticalItem from './NewsVerticalItem';
-import NewsHorizontalItem from './NewsHorizontalItem';
-import { INewsModel } from '../reducers/newsReducer'
+import { NewsHorizontalItem, NewsVerticalItem } from './../widgets';
+import { INewsModel, IState } from '../../interfaces';
+import '../../styles/styles.scss';
 
-
-import '../styles/styles.scss'
-import { IState } from './NotesPage';
 
 const NewsPage: React.FC = () => {
     const defaultNews = useSelector<IState, INewsModel>((state: IState) => state.news);

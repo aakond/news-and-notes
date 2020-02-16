@@ -1,19 +1,14 @@
 import React from 'react';
-import { INoteModel } from '../reducers/notesReducers';
+import { NotesListProps } from '../../interfaces';
+import '../../styles/styles.scss';
 
-import '../styles/styles.scss'
 
-interface NotesListProps {
-    notes: INoteModel[]
-    onToggle: (id: number) => void
-    onDelete: (id: number) => void
-}
-
-export const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete }) => {
+const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete }) => {
     const deleteHandler = (event: React.MouseEvent, id: number) => {
         event.preventDefault();
         onDelete(id);
     }
+    
     if (notes.length === 0)
     {
         return <p className="align-center">Пусто! Заметок нет</p>
@@ -39,3 +34,5 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onToggle, onDelete 
         }
     </ul>
 }
+
+export default NotesList;

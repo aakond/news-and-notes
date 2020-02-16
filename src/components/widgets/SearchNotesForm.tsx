@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react'
-import { IState } from './NotesPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionTypes } from '../actions';
-
-interface SearchNotesProps {
-    onSearch: (query: string) => void
-}
+import { SearchNotesProps, IState } from '../../interfaces';
+import { actionTypes } from '../../actions';
+import '../../styles/styles.scss';
 
 const SearchNotesForm: React.FC<SearchNotesProps> = ({ onSearch }) => {
     const dispatch = useDispatch();
+
     const searchQuery = useSelector<IState, string>((state: IState) => state.notes.searchQuery);
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {        
