@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "check-types": "tsc",
     "lint": "tslint src/**/*.ts{,x}",
-    "lint-fix": "tslint src/**/*.ts{,x} --fix -c ./tslint.json" 
+    "lint-fix": "tslint src/**/*.ts{,x} --fix -c ./tslint.json"
   },
   "keywords": [],
   "author": "",
